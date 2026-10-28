@@ -64,6 +64,15 @@ async def generic_exception_handler(request: Request, exc: Exception):
 
 app.include_router(api_v1_router, prefix=settings.API_V1_PREFIX)
 
+@app.get("/health", tags=["Health"])
+def health_endpoint():
+    """Root healthcheck probe for hosting platforms (Render, Fly.io, etc.)."""
+    return {
+        "status": "healthy",
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+    }
+
 @app.get("/", tags=["Root"])
 def root():
     return {

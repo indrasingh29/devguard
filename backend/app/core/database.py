@@ -8,6 +8,8 @@ from app.core.logging import logger
 
 connect_args = {}
 db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 if db_url.startswith("sqlite"):
     connect_args["check_same_thread"] = False
@@ -15,8 +17,13 @@ if db_url.startswith("sqlite"):
 # Support PostgreSQL primary with graceful local dev fallback if local PostgreSQL server is offline
 try:
     if db_url.startswith("postgresql"):
-        # Test connection briefly
-        test_engine = create_engine(db_url, connect_args={"connect_timeout": 2})
+        # Test connection briefly with timeout supporting serverless cold starts (e.g. Neon)
+        test_engine = create_engine(
+            db_url,
+            pool_pre_ping=True,
+            pool_recycle=300,
+            connect_args={"connect_timeout": 10}
+        )
         with test_engine.connect() as conn:
             conn.execute(text("SELECT 1"))
         engine = test_engine
