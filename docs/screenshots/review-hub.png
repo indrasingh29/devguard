@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <rect width="1200" height="675" fill="#0b0f19"/>
+  <!-- Top Bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#020617" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="40" cy="32" r="14" fill="#0284c7" opacity="0.2"/>
+  <path d="M40 22 L48 26 L48 34 C48 38 40 42 40 42 C40 42 32 38 32 34 L32 26 Z" fill="#38bdf8"/>
+  <text x="65" y="38" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">DevGuard AI</text>
+  <text x="175" y="38" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14">PR Review Hub</text>
+
+  <!-- PR Header Card -->
+  <g transform="translate(60, 90)">
+    <rect x="0" y="0" width="1080" height="90" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <text x="24" y="36" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold">pallets/flask #5612</text>
+    <rect x="230" y="18" width="90" height="24" rx="12" fill="#064e3b" stroke="#059669"/>
+    <text x="245" y="34" fill="#34d399" font-family="system-ui" font-size="11" font-weight="600">COMPLETED</text>
+    <text x="24" y="65" fill="#94a3b8" font-family="system-ui" font-size="13">Commit: 7fd1a60b • Analyzed 3 changed files in 0.34ms using deterministic engine</text>
+  </g>
+
+  <!-- Diff Viewer Card with Inline Finding Callout -->
+  <g transform="translate(60, 205)">
+    <rect x="0" y="0" width="1080" height="430" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <!-- File Header -->
+    <rect x="0" y="0" width="1080" height="42" rx="12" fill="#1e293b" stroke="#334155"/>
+    <text x="24" y="26" fill="#ffffff" font-family="monospace" font-size="13" font-weight="600">src/flask/app.py (+18 / -3)</text>
+    
+    <!-- Hunk Header -->
+    <rect x="0" y="42" width="1080" height="26" fill="#020617"/>
+    <text x="24" y="60" fill="#64748b" font-family="monospace" font-size="12">@@ -142,6 +142,12 @@ def dispatch_request(self):</text>
+
+    <!-- Normal line -->
+    <rect x="0" y="68" width="1080" height="26" fill="#0f172a"/>
+    <text x="15" y="86" fill="#475569" font-family="monospace" font-size="12"> 142  142</text>
+    <text x="100" y="86" fill="#cbd5e1" font-family="monospace" font-size="12">    req = _cv_request.get()</text>
+
+    <!-- Vulnerable Addition Line -->
+    <rect x="0" y="94" width="1080" height="28" fill="#450a0a" opacity="0.4"/>
+    <text x="15" y="113" fill="#ef4444" font-family="monospace" font-size="12">      143</text>
+    <text x="90" y="113" fill="#f87171" font-family="monospace" font-size="12">+   query = f"SELECT * FROM users WHERE token = '{req.args.get('token')}'"</text>
+
+    <!-- Inline Finding Card -->
+    <g transform="translate(100, 130)">
+      <rect x="0" y="0" width="940" height="150" rx="8" fill="#1e1b4b" stroke="#4338ca"/>
+      <rect x="16" y="16" width="70" height="20" rx="10" fill="#991b1b"/>
+      <text x="26" y="30" fill="#fecaca" font-family="system-ui" font-size="10" font-weight="700">CRITICAL</text>
+      <rect x="94" y="16" width="70" height="20" rx="4" fill="#312e81"/>
+      <text x="104" y="30" fill="#c7d2fe" font-family="system-ui" font-size="10" font-weight="600">SECURITY</text>
+      <text x="180" y="30" fill="#818cf8" font-family="monospace" font-size="11">RULE: VULN-001 (Deterministic)</text>
+      
+      <text x="16" y="62" fill="#ffffff" font-family="system-ui" font-size="14" font-weight="600">Potential SQL Injection</text>
+      <text x="16" y="84" fill="#cbd5e1" font-family="system-ui" font-size="12">Dynamic string interpolation detected inside database query. This creates an exploitable SQL injection vulnerability.</text>
+
+      <rect x="16" y="100" width="908" height="34" rx="6" fill="#0f172a" stroke="#312e81"/>
+      <text x="28" y="122" fill="#38bdf8" font-family="monospace" font-size="11">Fix: Use parameterized query: cursor.execute("SELECT * FROM users WHERE token = :token", {"token": token})</text>
+    </g>
+
+    <!-- Normal line following -->
+    <rect x="0" y="290" width="1080" height="26" fill="#0f172a"/>
+    <text x="15" y="308" fill="#475569" font-family="monospace" font-size="12"> 143  144</text>
+    <text x="100" y="308" fill="#cbd5e1" font-family="monospace" font-size="12">    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)</text>
+  </g>
+</svg>
