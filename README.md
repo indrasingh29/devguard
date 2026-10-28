@@ -1,6 +1,6 @@
 # DevGuard AI — Automated Code Review & Pull Request Assistant
 
-[![CI Pipeline](https://github.com/your-username/devguard/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/devguard/actions)
+[![CI Pipeline](https://github.com/indrasingh29/devguard/actions/workflows/ci.yml/badge.svg)](https://github.com/indrasingh29/devguard/actions)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
 [![React 19](https://img.shields.io/badge/frontend-React%2019%20+%20TypeScript-61DAFB.svg)](https://react.dev/)
@@ -129,7 +129,7 @@ python evals/run_eval.py
 ### 1. Backend Setup
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/devguard.git
+git clone https://github.com/indrasingh29/devguard.git
 cd devguard
 
 # Create and activate virtual environment
