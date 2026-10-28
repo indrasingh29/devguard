@@ -1,7 +1,8 @@
-import os
 from typing import List, Optional, Union
-from pydantic_settings import BaseSettings, SettingsConfigDict
+
 from pydantic import Field, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "DevGuard AI"
@@ -13,7 +14,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = Field(
         default="postgresql://postgres:postgres@localhost:5432/devguard"
     )
-    
+
     # GitHub Integration
     GITHUB_TOKEN: Optional[str] = Field(default=None)
     GITHUB_API_BASE: str = "https://api.github.com"
@@ -64,9 +65,12 @@ class Settings(BaseSettings):
             if val.startswith("[") and val.endswith("]"):
                 try:
                     import json
-                    return json.loads(val)
-                except Exception:
-                    pass
+
+                    parsed = json.loads(val)
+                    if isinstance(parsed, list):
+                        return [str(item).strip() for item in parsed if item]
+                except (json.JSONDecodeError, ValueError):
+                    return [i.strip() for i in val.strip("[]").split(",") if i.strip()]
             return [i.strip() for i in val.split(",") if i.strip()]
         return ["*"]
 
