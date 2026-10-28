@@ -12,6 +12,18 @@
 
 ---
 
+## 🌐 Live Production Deployment
+
+| Service | Environment | Status | Public URL |
+| :--- | :--- | :--- | :--- |
+| **Frontend Dashboard** | Render Static Cloud (React 19 + Vite) | ![Live](https://img.shields.io/badge/status-active%20%E2%9C%94-success) | [https://devguard-frontend-ljpt.onrender.com](https://devguard-frontend-ljpt.onrender.com) |
+| **Backend REST API** | Render Web Service (FastAPI + Python 3.12) | ![Healthy](https://img.shields.io/badge/status-healthy%20%E2%9C%94-success) | [https://devguard-backend-vi6w.onrender.com](https://devguard-backend-vi6w.onrender.com) |
+| **Interactive API Docs** | Swagger / OpenAPI 3.1 | ![Docs](https://img.shields.io/badge/docs-OpenAPI%203.1-blue) | [https://devguard-backend-vi6w.onrender.com/docs](https://devguard-backend-vi6w.onrender.com/docs) |
+| **Health Check** | JSON Diagnostics Endpoint | ![200 OK](https://img.shields.io/badge/health-200%20OK-brightgreen) | [https://devguard-backend-vi6w.onrender.com/health](https://devguard-backend-vi6w.onrender.com/health) |
+| **System Status** | Public Config & Dialect Status | ![Connected](https://img.shields.io/badge/postgresql-connected-blue) | [https://devguard-backend-vi6w.onrender.com/api/v1/settings/status](https://devguard-backend-vi6w.onrender.com/api/v1/settings/status) |
+
+---
+
 ## 1. Problem Statement
 
 Manual code reviews are frequently bottlenecked by repetitive syntax reviews, unnoticed secret credentials, and subtle logic regressions. Furthermore, many modern AI-based review bots introduce critical operational flaws:
